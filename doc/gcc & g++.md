@@ -96,11 +96,18 @@ ld.so.conf指定的配置内容可能如：
 - 每次动态链接器都需要遍历目录的话会非常耗时，因此有命令**ldconfig**。
 
 - **ldconfig**作用是为共享库目录下的各个共享库创建，删除或更新相应的SO-NAME，这样每个共享库的SO-NAME就能指向正确的共享库文件。并且，将这些SO-NAME收集起来，集中存放到 /etc/ld.so.cache文件里面，建立一个SO-NAME的缓存。当动态链接器需要查找共享库时，可以直接在ld.so.cache里面查找。
+
 - 如果动态链接器在/etc/ld.so.cache中没有找到共享库，还会遍历/lib和/usr/lib这两个目录。
+
 - 所以，理论上我们在系统指定的共享库目录下添加，删除，更新了任何一个共享库，或者更改了/etc/ld.so.conf的配置，都应该运行ldconfig这个程序，以便调整SO-NAME和/etc/ld.so.cache.很多软件包的安装程序在往系统路径里安装共享库后都会调用ldconfig。
+
 - **LD_LIBRARY_PATH**的优先级较高，它的作用本质上同gcc -L参数是一样的。
-- LD_PRELOAD
-- LD_DEBUG
+
+- **LD_PRELOAD**
+
+- **LD_DEBUG**
+
+  
 
 
 
